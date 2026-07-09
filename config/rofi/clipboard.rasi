@@ -1,0 +1,52 @@
+configuration {
+  font: "Fira Sans 10";
+  show-icons: false;
+}
+
+@import "colors.rasi"
+
+window {
+  width: 42em;
+  location: center;
+  anchor: center;
+  border: 1px;
+  border-color: @border;
+  border-radius: 12px;
+  background-color: @background;
+}
+
+mainbox {
+  padding: 12px;
+  spacing: 10px;
+  children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: @surface;
+  children: [ "entry" ];
+}
+
+entry {
+  placeholder: "Clipboard";
+  text-color: @text;
+  placeholder-color: @muted;
+}
+
+listview {
+  lines: 10;
+  scrollbar: false;
+  spacing: 4px;
+}
+
+element {
+  padding: 8px 10px;
+  border-radius: 9px;
+  text-color: @text;
+}
+
+element selected.normal {
+  background-color: @surface-hover;
+  text-color: @accent;
+}

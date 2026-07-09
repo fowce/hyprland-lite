@@ -1,0 +1,17 @@
+* {
+  background: #1b1719ee;
+  sidebar: #242022;
+  surface: #2d292b;
+  surface-hover: #383335;
+  border: #433d40;
+  accent: #ffae72;
+  accent-hover: #ffc28e;
+  accent-active: #ff9750;
+  text: #f2ede8;
+  muted: #cdbbb6;
+  disabled: #8c8480;
+  success: #8ccf7e;
+  warning: #ffcc66;
+  danger: #ef6b73;
+  info: #79b8ff;
+}

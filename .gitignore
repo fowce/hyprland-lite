@@ -1,0 +1,26 @@
+# Runtime state
+.install-ready.local
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Generated local preview captures
+preview/videos/*.mkv
+preview/videos/*.mp4
+preview/videos/*.webm
+
+# Large or private local wallpaper drops
+config/wallpapers/local/
+
+# Private shell overrides
+config/zsh/modules/90-local.zsh
+
+# OS/editor metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

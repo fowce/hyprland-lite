@@ -1,0 +1,28 @@
+font=Fira Sans Semibold 10
+background-color=#1b1719dd
+text-color=#f2ede8
+border-color=#ffae72
+progress-color=over #ffae72
+
+width=360
+height=120
+margin=12
+padding=12
+border-size=1
+border-radius=10
+
+default-timeout=5000
+ignore-timeout=0
+
+anchor=top-right
+layer=overlay
+max-visible=5
+sort=-time
+
+[urgency=low]
+default-timeout=3000
+border-color=#433d40
+
+[urgency=high]
+default-timeout=0
+border-color=#ef6b73

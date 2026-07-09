@@ -1,0 +1,102 @@
+{
+  "custom/appmenu": {
+    "format": "Apps",
+    "on-click": "~/.config/hypr/scripts/launcher.sh",
+    "on-click-right": "~/.config/hypr/scripts/workspace-switcher.sh",
+    "tooltip-format": "Left: applications\nRight: workspaces"
+  },
+
+  "custom/sidebar": {
+    "format": "",
+    "on-click": "qs ipc call sidebar toggle",
+    "tooltip-format": "Desktop controls"
+  },
+
+  "hyprland/window": {
+    "separate-outputs": true,
+    "max-length": 60,
+    "rewrite": {
+      "(.*) - Brave": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Zen Browser": "$1",
+      "(.*) - Visual Studio Code": "$1"
+    }
+  },
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{id}",
+    "persistent-workspaces": {
+      "*": 10
+    }
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "muted",
+    "format-source": "{volume}% mic",
+    "format-source-muted": "mic muted",
+    "format-icons": {
+      "default": ["vol", "vol", "vol"]
+    },
+    "tooltip-format": "{volume}%",
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "chg {capacity}%",
+    "format-plugged": "plug {capacity}%",
+    "format-alt": "{time}",
+    "format-icons": ["bat", "bat", "bat", "bat", "bat"]
+  },
+
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "wifi",
+    "format-ethernet": "eth",
+    "format-disconnected": "offline",
+    "tooltip-format-wifi": "{essid} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "kitty -e nmtui"
+  },
+
+  "hyprland/language": {
+    "format": "lang {short}",
+    "tooltip": false
+  },
+
+  "custom/cliphist": {
+    "format": "clip",
+    "on-click": "~/.config/hypr/scripts/clipboard.sh",
+    "on-click-right": "~/.config/hypr/scripts/clipboard.sh --delete",
+    "on-click-middle": "~/.config/hypr/scripts/clipboard.sh --wipe",
+    "tooltip-format": "Left: open\nRight: delete\nMiddle: wipe"
+  },
+
+  "tray": {
+    "spacing": 10
+  },
+
+  "custom/power": {
+    "format": "power",
+    "on-click": "qs ipc call power toggle",
+    "on-click-right": "~/.config/hypr/scripts/power.sh",
+    "tooltip-format": "Left: power panel\nRight: fallback menu"
+  },
+
+  "clock": {
+    "format": "{:%H:%M %a}",
+    "tooltip": false,
+    "on-click": "qs ipc call calendar toggle"
+  }
+}

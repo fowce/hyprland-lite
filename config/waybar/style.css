@@ -1,0 +1,130 @@
+@import "../theme/colors.css";
+
+* {
+  font-family: "Fira Sans Semibold", "JetBrainsMono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @text;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background: alpha(@background, 0.72);
+  border-radius: 13px;
+  margin: 2px 6px;
+  padding: 1px 10px;
+}
+
+#custom-appmenu,
+#custom-sidebar,
+#window,
+#workspaces,
+#pulseaudio,
+#battery,
+#network,
+#language,
+#custom-cliphist,
+#tray,
+#custom-power,
+#clock {
+  border-radius: 13px;
+  color: @accent_hover;
+}
+
+#custom-appmenu,
+#custom-sidebar,
+#pulseaudio,
+#battery,
+#network,
+#language,
+#clock {
+  background: alpha(@surface, 0.72);
+  margin: 4px 4px 4px 0;
+  padding: 2px 10px 0 10px;
+}
+
+#custom-appmenu,
+#custom-sidebar {
+  margin-right: 10px;
+}
+
+#window {
+  background: transparent;
+  margin: 0 10px 0 0;
+  padding: 2px 10px 0 10px;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+}
+
+#workspaces {
+  padding: 0 1px;
+  font-weight: bold;
+}
+
+#workspaces button {
+  color: @accent_hover;
+  border-radius: 13px;
+  margin: 4px 3px;
+  padding: 0 7px;
+}
+
+#workspaces button.active {
+  background: @accent;
+  color: @background;
+  min-width: 28px;
+}
+
+#workspaces button:hover {
+  background: @accent_hover;
+  color: @background;
+}
+
+#custom-cliphist,
+#custom-power,
+#tray {
+  margin: 4px 4px 4px 0;
+  padding: 2px 8px 0 8px;
+  background: transparent;
+  color: @accent;
+}
+
+#battery.critical:not(.charging) {
+  background: @error;
+  color: @background;
+}
+
+#network.disconnected {
+  background: @error;
+  color: @background;
+}
+
+#custom-appmenu:hover,
+#custom-sidebar:hover,
+#pulseaudio:hover,
+#battery:hover,
+#network:hover,
+#language:hover,
+#custom-cliphist:hover,
+#custom-power:hover,
+#clock:hover {
+  background: @hover;
+  color: @accent;
+}
+
+tooltip {
+  background: alpha(@background, 0.92);
+  border-radius: 13px;
+}
+
+tooltip label {
+  color: @text;
+}

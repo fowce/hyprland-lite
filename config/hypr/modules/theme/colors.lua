@@ -1,0 +1,27 @@
+local colors = {
+    background = "#1b1719",
+    sidebar = "#242022",
+    surface = "#2d292b",
+    hover = "#383335",
+    border = "#433d40",
+    accent = "#ffae72",
+    accent_hover = "#ffc28e",
+    accent_active = "#ff9750",
+    text = "#f2ede8",
+    text_secondary = "#cdbbb6",
+    text_disabled = "#8c8480",
+    success = "#8ccf7e",
+    warning = "#ffcc66",
+    error = "#ef6b73",
+    info = "#79b8ff",
+}
+
+function colors.rgba(name, alpha)
+    local hex = colors[name]
+    if not hex then
+        return "rgba(ffffffff)"
+    end
+    return "rgba(" .. string.sub(hex, 2) .. (alpha or "ff") .. ")"
+end
+
+return colors

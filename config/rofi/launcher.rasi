@@ -1,0 +1,73 @@
+configuration {
+  modi: "drun,run,window";
+  show-icons: true;
+  drun-display-format: "{name}";
+  font: "Fira Sans 11";
+  hover-select: false;
+  scroll-method: 1;
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
+}
+
+@import "colors.rasi"
+
+window {
+  width: 42em;
+  location: center;
+  anchor: center;
+  border: 1px;
+  border-color: @border;
+  border-radius: 12px;
+  background-color: @background;
+}
+
+mainbox {
+  padding: 12px;
+  spacing: 10px;
+  orientation: vertical;
+  children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: @surface;
+  children: [ "entry" ];
+}
+
+entry {
+  placeholder: "Search";
+  text-color: @text;
+  placeholder-color: @muted;
+  background-color: transparent;
+}
+
+listview {
+  lines: 9;
+  columns: 1;
+  fixed-height: true;
+  scrollbar: false;
+  spacing: 4px;
+  background-color: transparent;
+}
+
+element {
+  padding: 8px 10px;
+  spacing: 10px;
+  border-radius: 9px;
+  background-color: transparent;
+  text-color: @text;
+}
+
+element selected.normal {
+  background-color: @surface-hover;
+  text-color: @accent;
+}
+
+element-icon {
+  size: 1.5em;
+}
+
+element-text {
+  vertical-align: 0.5;
+}

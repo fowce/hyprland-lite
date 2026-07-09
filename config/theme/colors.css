@@ -1,0 +1,16 @@
+@define-color background #1b1719;
+@define-color background_alpha #1b1719dd;
+@define-color sidebar #242022;
+@define-color surface #2d292b;
+@define-color hover #383335;
+@define-color border #433d40;
+@define-color accent #ffae72;
+@define-color accent_hover #ffc28e;
+@define-color accent_active #ff9750;
+@define-color text #f2ede8;
+@define-color text_secondary #cdbbb6;
+@define-color text_disabled #8c8480;
+@define-color success #8ccf7e;
+@define-color warning #ffcc66;
+@define-color error #ef6b73;
+@define-color info #79b8ff;
