@@ -68,6 +68,8 @@ PACKAGE_REQUIRED=(
   "grim"
   "slurp"
   "imagemagick"
+  "tesseract"
+  "tesseract-data-eng"
   "swww"
   "quickshell"
 )
@@ -76,8 +78,7 @@ PACKAGE_OPTIONAL=(
   "libnotify"
   "nwg-look"
   "qt6ct"
-  "tesseract"
-  "tesseract-data-eng"
+  "tesseract-data-rus"
   "nautilus"
   "zen-browser"
 )
@@ -109,6 +110,7 @@ COMMAND_REQUIRED=(
   "grim"
   "slurp"
   "magick"
+  "tesseract"
   "qs"
 )
 
@@ -116,7 +118,6 @@ COMMAND_OPTIONAL=(
   "notify-send"
   "nwg-look"
   "qt6ct"
-  "tesseract"
   "nautilus"
   "zen-browser"
 )

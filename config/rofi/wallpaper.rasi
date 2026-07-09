@@ -6,24 +6,23 @@ configuration {
 @import "colors.rasi"
 
 window {
-  width: 44em;
+  width: 58em;
   location: center;
   anchor: center;
   border: 1px;
   border-color: @border;
-  border-radius: 12px;
+  border-radius: 14px;
   background-color: @background;
-  transparency: "real";
 }
 
 mainbox {
-  padding: 12px;
-  spacing: 10px;
+  padding: 18px;
+  spacing: 16px;
   children: [ "inputbar", "listview" ];
 }
 
 inputbar {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 10px;
   border: 0;
   background-color: @surface;
@@ -31,26 +30,28 @@ inputbar {
 }
 
 entry {
-  placeholder: "Search";
+  placeholder: "Search wallpapers...";
   text-color: @text;
   placeholder-color: @muted;
   background-color: transparent;
 }
 
 listview {
-  lines: 2;
-  columns: 3;
+  lines: 3;
+  columns: 4;
   fixed-height: true;
   scrollbar: false;
-  spacing: 10px;
+  spacing: 16px;
   border: 0;
   background-color: transparent;
 }
 
 element {
-  padding: 8px;
+  padding: 4px;
   border-radius: 10px;
   background-color: @surface;
+  border: 1px;
+  border-color: @border;
 }
 
 element normal.normal,
@@ -61,11 +62,13 @@ element alternate.active {
 }
 
 element selected.normal {
-  background-color: @accent;
+  background-color: @surface-hover;
+  border: 2px;
+  border-color: @accent;
 }
 
 element-icon {
-  size: 9em;
+  size: 8.5em;
   horizontal-align: 0.5;
 }
 

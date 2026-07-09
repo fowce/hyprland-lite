@@ -91,8 +91,9 @@ Do not install packages blindly on the main system. Test in a VM first.
 | --- | --- | --- | --- | --- | --- |
 | `nwg-look` | optional | pacman/AUR | GTK theme editing | yes | Kept because user requested it. |
 | `qt6ct` | optional | pacman | Qt theme editing | yes | Kept because user requested it. |
-| `tesseract` | optional | pacman | OCR backend | yes | Needed only if OCR script is used. |
-| `tesseract-data-eng` | optional | pacman | English OCR data | yes | Add other language packs as needed. |
+| `tesseract` | required | pacman | OCR backend | yes | Required for screenshot text extraction. |
+| `tesseract-data-eng` | required | pacman | English OCR data | yes | OCR needs at least one language pack. |
+| `tesseract-data-rus` | optional | pacman | Russian OCR data | yes | Used automatically when installed. |
 | `nautilus` | optional | pacman | default file manager keybind | yes | Change `file_manager` in `settings.lua` if using another file manager. |
 | `zen-browser` | optional | AUR/upstream | default browser keybind | yes | Change `browser` in `settings.lua` if using another browser. |
 
