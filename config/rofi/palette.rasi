@@ -5,6 +5,10 @@ configuration {
 
 @import "colors.rasi"
 
+* {
+  background-color: @background;
+}
+
 window {
   width: 26em;
   location: center;
@@ -18,6 +22,7 @@ window {
 mainbox {
   padding: 12px;
   spacing: 10px;
+  background-color: @background;
   children: [ "inputbar", "listview" ];
 }
 
@@ -41,7 +46,7 @@ listview {
   scrollbar: false;
   spacing: 6px;
   border: 0;
-  background-color: transparent;
+  background-color: @background;
 }
 
 element {
