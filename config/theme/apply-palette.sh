@@ -107,7 +107,6 @@ mkdir -p "$theme_dir" "$hypr_theme_dir" "$hypr_config_dir" "$quickshell_theme_di
 
 cat > "${theme_dir}/colors.css" <<EOF
 @define-color background ${background};
-@define-color background_alpha ${background}dd;
 @define-color sidebar ${sidebar};
 @define-color surface ${surface};
 @define-color hover ${hover};
