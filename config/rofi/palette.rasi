@@ -1,0 +1,66 @@
+configuration {
+  font: "Fira Sans 11";
+  show-icons: false;
+}
+
+@import "colors.rasi"
+
+window {
+  width: 26em;
+  location: center;
+  anchor: center;
+  border: 1px;
+  border-color: @border;
+  border-radius: 12px;
+  background-color: @background;
+  transparency: "real";
+}
+
+mainbox {
+  padding: 12px;
+  spacing: 10px;
+  children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 0;
+  background-color: @surface;
+  children: [ "entry" ];
+}
+
+entry {
+  placeholder: "Palette";
+  text-color: @text;
+  placeholder-color: @muted;
+  background-color: transparent;
+}
+
+listview {
+  lines: 6;
+  scrollbar: false;
+  spacing: 6px;
+  border: 0;
+  background-color: transparent;
+}
+
+element {
+  padding: 9px 10px;
+  border-radius: 9px;
+  background-color: @surface;
+  text-color: @text;
+}
+
+element normal.normal,
+element alternate.normal,
+element normal.active,
+element alternate.active {
+  background-color: @surface;
+  text-color: @text;
+}
+
+element selected.normal {
+  background-color: @accent;
+  text-color: @background;
+}

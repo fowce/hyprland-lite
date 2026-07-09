@@ -4,7 +4,7 @@ set -Eeuo pipefail
 config_home="${XDG_CONFIG_HOME:-${HOME}/.config}"
 palette_dir="${config_home}/palettes"
 theme_dir="${config_home}/theme"
-rofi_theme="${config_home}/rofi/launcher.rasi"
+rofi_theme="${config_home}/rofi/palette.rasi"
 
 die() {
   printf 'palette-picker: %s\n' "$*" >&2

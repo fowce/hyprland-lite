@@ -159,7 +159,7 @@ PanelWindow {
                 ActionRow {
                     title: "Palette"
                     subtitle: "Switch color palette"
-                    glyph: ""
+                    glyph: ""
                     onActivated: root.run("~/.config/hypr/scripts/palette-picker.sh", true)
                 }
 
