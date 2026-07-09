@@ -175,7 +175,12 @@ PanelWindow {
 
         Keys.onLeftPressed: root.prevMonth()
         Keys.onRightPressed: root.nextMonth()
-        Keys.onHomePressed: root.goToday()
+        Keys.onPressed: event => {
+            if (event.key === Qt.Key_Home) {
+                root.goToday()
+                event.accepted = true
+            }
+        }
 
         Rectangle {
             anchors.fill: parent
