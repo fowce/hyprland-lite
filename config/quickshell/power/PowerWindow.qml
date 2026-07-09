@@ -157,9 +157,10 @@ PanelWindow {
                     text: button.glyph
                     color: mouse.containsMouse || button.selected ? colors.background : (button.danger ? colors.error : colors.accent)
                     font.family: "JetBrainsMono Nerd Font"
-                    font.pixelSize: 19
+                    font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
+                    anchors.verticalCenterOffset: 1
                 }
 
                 MouseArea {

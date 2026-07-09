@@ -524,6 +524,11 @@ PanelWindow {
             value: control.value
             stepSize: 5
             onMoved: control.changed(Math.round(value))
+            onValueChanged: {
+                if (pressed) {
+                    control.changed(Math.round(value))
+                }
+            }
 
             background: Rectangle {
                 x: slider.leftPadding

@@ -46,6 +46,7 @@ PACKAGE_REQUIRED=(
   "zsh-autosuggestions"
   "zsh-syntax-highlighting"
   "ttf-jetbrains-mono-nerd"
+  "ttf-fira-sans"
   "ttf-font-awesome"
   "jq"
   "polkit-gnome"

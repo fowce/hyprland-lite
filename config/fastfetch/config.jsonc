@@ -12,44 +12,50 @@
   "display": {
     "separator": " "
   },
-  "modules": [
-    "title",
-    "separator",
-    {
-      "type": "os",
-      "key": "OS"
-    },
-    {
-      "type": "kernel",
-      "key": "Kernel"
-    },
-    {
-      "type": "shell",
-      "key": "Shell"
-    },
-    {
-      "type": "wm",
-      "key": "WM"
-    },
-    {
-      "type": "terminal",
-      "key": "Terminal"
-    },
-    {
-      "type": "cpu",
-      "key": "CPU"
-    },
-    {
-      "type": "gpu",
-      "key": "GPU"
-    },
-    {
-      "type": "memory",
-      "key": "Memory"
-    },
-    {
-      "type": "uptime",
-      "key": "Uptime"
-    }
-  ]
+    "modules": [
+        "title",
+        "separator",
+        {
+            "type": "os",
+            "keyIcon": "󰣇",
+            "key": "{icon} OS"
+        },
+        {
+            "type": "kernel",
+            "keyIcon": "",
+            "key": "{icon} Kernel"
+        },
+        {
+            "type": "shell",
+            "keyIcon": "",
+            "key": "{icon} Shell"
+        },
+        {
+            "type": "command",
+            "keyIcon": "󰧨",
+            "key": "{icon} DE",
+            "text": "printf '%s %s' \"${XDG_CURRENT_DESKTOP:-Hyprland}\" \"$(pacman -Q hyprland 2>/dev/null | awk '{print $2}' | sed 's/-[0-9]*$//')\""
+        },
+        {
+            "type": "wm",
+            "keyIcon": "",
+            "key": "{icon} WM"
+        },
+        {
+            "type": "cpu",
+            "keyIcon": "",
+            "key": "{icon} CPU"
+        },
+        {
+            "type": "gpu",
+            "keyIcon": "󰢮",
+            "key": "{icon} GPU"
+        },
+        {
+            "type": "command",
+            "keyIcon": "󰄛",
+            "key": "{icon} Kitty",
+            "text": "printf '%s' 'Base2Tone Desert Dark'"
+        }
+    ]
 }

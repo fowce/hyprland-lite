@@ -35,6 +35,7 @@ Do not install packages blindly on the main system. Test in a VM first.
 | `zsh-autosuggestions` | recommended | pacman | shell suggestions | yes | Plugin is optional but expected. |
 | `zsh-syntax-highlighting` | recommended | pacman | shell command highlighting | yes | Plugin is optional but expected. |
 | `ttf-jetbrains-mono-nerd` | recommended | pacman | terminal font | yes | Used by Kitty and UI text. |
+| `ttf-fira-sans` | required | pacman | UI text font | yes | Used by Waybar and Quickshell text. |
 
 ## Clipboard
 

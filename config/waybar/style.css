@@ -1,7 +1,7 @@
 @import "../theme/colors.css";
 
 * {
-  font-family: "Fira Sans Semibold", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "JetBrainsMono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Fira Sans Semibold", "Fira Sans", "JetBrainsMono Nerd Font", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   border: none;
   border-radius: 0;
@@ -66,6 +66,19 @@ window#waybar {
   color: transparent;
 }
 
+#network {
+  background-image: url("./assets/wifi.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  min-width: 28px;
+  color: transparent;
+}
+
+#network.disconnected {
+  background-image: url("./assets/wifi-off.svg");
+}
+
 #window {
   background: transparent;
   margin: 0 10px 0 0;
@@ -111,11 +124,6 @@ window#waybar.empty #window {
 }
 
 #battery.critical:not(.charging) {
-  background: @error;
-  color: @background;
-}
-
-#network.disconnected {
   background: @error;
   color: @background;
 }
