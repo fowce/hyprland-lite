@@ -121,6 +121,30 @@ COMMAND_OPTIONAL=(
   "zen-browser"
 )
 
+package_for_command() {
+  case "$1" in
+    hyprctl) printf '%s\n' "hyprland" ;;
+    wpctl) printf '%s\n' "wireplumber" ;;
+    nmtui) printf '%s\n' "networkmanager" ;;
+    wl-copy|wl-paste) printf '%s\n' "wl-clipboard" ;;
+    magick) printf '%s\n' "imagemagick" ;;
+    qs) printf '%s\n' "quickshell" ;;
+    *) printf '%s\n' "$1" ;;
+  esac
+}
+
+append_unique() {
+  local value="$1"
+  shift
+  local item
+
+  for item in "$@"; do
+    [[ "${item}" != "${value}" ]] || return 1
+  done
+
+  printf '%s\n' "${value}"
+}
+
 usage() {
   cat <<EOF
 Usage: ./install.sh [ACTION] [OPTIONS]
@@ -223,6 +247,7 @@ check_hyprland() {
 check_dependencies() {
   local missing_cmds=()
   local missing_pkgs=()
+  local repair_pkgs=()
   local missing_optional_cmds=()
   local missing_optional_pkgs=()
   local cmd pkg
@@ -234,6 +259,13 @@ check_dependencies() {
     else
       missing_cmds+=("${cmd}")
       say "MISSING command: ${cmd}"
+      pkg="$(package_for_command "${cmd}")"
+      if command -v pacman >/dev/null 2>&1 && pacman -Q "${pkg}" >/dev/null 2>&1; then
+        if unique_value="$(append_unique "${pkg}" "${repair_pkgs[@]}")"; then
+          repair_pkgs+=("${unique_value}")
+        fi
+        say "REPAIR package needed: ${pkg} is installed but command ${cmd} is missing"
+      fi
     fi
   done
 
@@ -281,6 +313,10 @@ check_dependencies() {
 
   if [[ "${INSTALL_PACKAGES}" == true && "${#missing_pkgs[@]}" -gt 0 ]]; then
     install_missing_required_packages "${missing_pkgs[@]}"
+  fi
+
+  if [[ "${INSTALL_PACKAGES}" == true && "${#repair_pkgs[@]}" -gt 0 ]]; then
+    reinstall_required_packages "${repair_pkgs[@]}"
   fi
 }
 
@@ -362,6 +398,20 @@ install_missing_required_packages() {
     fi
   else
     say "Package installation skipped because no AUR helper is available."
+  fi
+}
+
+reinstall_required_packages() {
+  say "Required packages with missing commands: $*"
+
+  if ensure_aur_helper; then
+    if confirm "Reinstall/repair these packages with ${AUR_HELPER} -S?"; then
+      run_cmd "${AUR_HELPER}" -S "$@"
+    else
+      say "Package repair skipped."
+    fi
+  else
+    say "Package repair skipped because no AUR helper is available."
   fi
 }
 
