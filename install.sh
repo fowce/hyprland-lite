@@ -108,7 +108,6 @@ COMMAND_REQUIRED=(
   "grim"
   "slurp"
   "magick"
-  "swww"
   "qs"
 )
 
@@ -131,6 +130,18 @@ package_for_command() {
     qs) printf '%s\n' "quickshell" ;;
     *) printf '%s\n' "$1" ;;
   esac
+}
+
+wallpaper_backend_available() {
+  if command -v swww >/dev/null 2>&1 && command -v swww-daemon >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if command -v awww >/dev/null 2>&1 && command -v awww-daemon >/dev/null 2>&1; then
+    return 0
+  fi
+
+  return 1
 }
 
 append_unique() {
@@ -269,6 +280,19 @@ check_dependencies() {
     fi
   done
 
+  if wallpaper_backend_available; then
+    debug "FOUND wallpaper backend: swww/awww"
+  else
+    missing_cmds+=("swww-or-awww")
+    say "MISSING command: swww or awww wallpaper backend"
+    if command -v pacman >/dev/null 2>&1 && pacman -Q swww >/dev/null 2>&1; then
+      if unique_value="$(append_unique "swww" "${repair_pkgs[@]}")"; then
+        repair_pkgs+=("${unique_value}")
+      fi
+      say "REPAIR package needed: swww provider is installed but no swww/awww command pair is available"
+    fi
+  fi
+
   say "Checking optional/recommended commands..."
   for cmd in "${COMMAND_OPTIONAL[@]}"; do
     if command -v "${cmd}" >/dev/null 2>&1; then
@@ -329,6 +353,10 @@ assert_required_commands_available() {
       missing+=("${cmd}")
     fi
   done
+
+  if ! wallpaper_backend_available; then
+    missing+=("swww-or-awww")
+  fi
 
   if [[ "${#missing[@]}" -gt 0 ]]; then
     say "ERROR: Required commands are still missing: ${missing[*]}"

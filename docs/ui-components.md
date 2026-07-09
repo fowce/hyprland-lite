@@ -342,7 +342,7 @@ Sidebar Wallpaper button
 Purpose:
 
 - select a wallpaper file;
-- set it with `swww`;
+- set it with `swww` or compatible `awww`;
 - store current wallpaper state;
 - generate lockscreen cache.
 
@@ -350,12 +350,12 @@ Logic:
 
 - reads image files from `~/.config/wallpapers`;
 - sends the selected path to `wallpaper.sh`;
-- `wallpaper.sh` uses `swww`;
+- `wallpaper.sh` uses `swww` when available, otherwise compatible `awww`;
 - cache is stored in `~/.cache/hyprland-lite`.
 
 Dependencies:
 
-- `swww`;
+- `swww` or compatible `awww`;
 - `imagemagick`;
 - `rofi`.
 

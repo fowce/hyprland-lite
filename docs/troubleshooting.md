@@ -61,10 +61,12 @@ wl-paste --watch cliphist store
 
 ## Wallpaper Does Not Restore
 
-Check that `swww` works:
+Check that `swww` or compatible `awww` works:
 
 ```bash
 swww query
+# or:
+awww query
 ```
 
 Set a wallpaper manually:

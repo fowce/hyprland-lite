@@ -8,22 +8,43 @@ wallpaper_dir="$HOME/.config/wallpapers"
 
 mkdir -p "$cache_dir"
 
+backend_command() {
+  if command -v swww >/dev/null 2>&1 && command -v swww-daemon >/dev/null 2>&1; then
+    printf '%s\n' "swww"
+    return 0
+  fi
+
+  if command -v awww >/dev/null 2>&1 && command -v awww-daemon >/dev/null 2>&1; then
+    printf '%s\n' "awww"
+    return 0
+  fi
+
+  printf 'Wallpaper backend not found. Install swww or awww.\n' >&2
+  exit 1
+}
+
 start_daemon() {
-  if ! pgrep -x swww-daemon >/dev/null 2>&1; then
-    swww-daemon >/dev/null 2>&1 &
+  local backend="$1"
+  local daemon="${backend}-daemon"
+
+  if ! pgrep -x "$daemon" >/dev/null 2>&1; then
+    "$daemon" >/dev/null 2>&1 &
     sleep 0.5
   fi
 }
 
 set_wallpaper() {
   local image="$1"
+  local backend
+
   [[ -f "$image" ]] || {
     printf 'Wallpaper not found: %s\n' "$image" >&2
     exit 1
   }
 
-  start_daemon
-  swww img "$image" --transition-type any
+  backend="$(backend_command)"
+  start_daemon "$backend"
+  "$backend" img "$image" --transition-type any
   printf '%s\n' "$image" > "$state_file"
 
   if command -v magick >/dev/null 2>&1; then

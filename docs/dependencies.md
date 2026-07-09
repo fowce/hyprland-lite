@@ -47,7 +47,7 @@ Do not install packages blindly on the main system. Test in a VM first.
 
 | Package | Needed | Source | Why | Replaceable | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `swww` | required | pacman/AUR depending on system | wallpaper daemon | yes | Lightweight animated wallpaper setter. |
+| `swww` or `awww` | required | pacman/AUR depending on system | wallpaper daemon | yes | `awww` is accepted as a compatible provider when `swww` is not available. |
 | `imagemagick` | required | pacman | generate lockscreen cache | yes | Provides `magick`. |
 
 ## Audio, Brightness, Media
