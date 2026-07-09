@@ -98,7 +98,7 @@ PanelWindow {
 
     Item {
         id: panel
-        implicitWidth: 76
+        implicitWidth: 82
         implicitHeight: buttons.implicitHeight + 28
         anchors.centerIn: parent
         focus: true
@@ -139,8 +139,8 @@ PanelWindow {
 
                 signal activated()
 
-                implicitWidth: 52
-                implicitHeight: 52
+                implicitWidth: 54
+                implicitHeight: 54
                 radius: 26
 
                 color: mouse.containsMouse || selected ? (danger ? colors.error : colors.accent) : colors.surface
@@ -153,11 +153,11 @@ PanelWindow {
                 }
 
                 Text {
-                    anchors.centerIn: parent
+                    anchors.fill: parent
                     text: button.glyph
                     color: mouse.containsMouse || button.selected ? colors.background : (button.danger ? colors.error : colors.accent)
                     font.family: "JetBrainsMono Nerd Font"
-                    font.pixelSize: 20
+                    font.pixelSize: 19
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }

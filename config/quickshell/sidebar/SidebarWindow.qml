@@ -110,12 +110,14 @@ PanelWindow {
         }
 
         ScrollView {
+            id: scroll
             anchors.fill: parent
             anchors.margins: 18
             clip: true
+            contentWidth: root.implicitWidth - 36
 
             ColumnLayout {
-                width: parent.width
+                width: root.implicitWidth - 36
                 spacing: 14
 
                 Text {
@@ -354,9 +356,12 @@ PanelWindow {
         property string title: ""
         property string subtitle: ""
         property string glyph: ""
+        property int reservedRight: 0
         signal activated()
 
         Layout.fillWidth: true
+        Layout.minimumWidth: 330
+        Layout.preferredWidth: 356
         implicitHeight: 58
         radius: 13
         color: mouse.containsMouse ? colors.hover : colors.surface
@@ -371,7 +376,7 @@ PanelWindow {
         RowLayout {
             anchors.fill: parent
             anchors.leftMargin: 13
-            anchors.rightMargin: 13
+            anchors.rightMargin: 13 + row.reservedRight
             spacing: 12
 
             Text {
@@ -417,6 +422,7 @@ PanelWindow {
         id: toggleRow
 
         property bool checked: false
+        reservedRight: 56
 
         Rectangle {
             width: 42

@@ -6,13 +6,16 @@ configuration {
 @import "colors.rasi"
 
 window {
-  width: 42em;
-  location: center;
-  anchor: center;
+  width: 28em;
+  location: north east;
+  anchor: north east;
+  x-offset: -12px;
+  y-offset: 48px;
   border: 1px;
   border-color: @border;
   border-radius: 12px;
   background-color: @background;
+  transparency: "real";
 }
 
 mainbox {
@@ -24,6 +27,7 @@ mainbox {
 inputbar {
   padding: 10px 12px;
   border-radius: 10px;
+  border: 0;
   background-color: @surface;
   children: [ "entry" ];
 }
@@ -35,18 +39,29 @@ entry {
 }
 
 listview {
-  lines: 10;
+  lines: 8;
   scrollbar: false;
-  spacing: 4px;
+  spacing: 6px;
+  border: 0;
+  background-color: transparent;
 }
 
 element {
   padding: 8px 10px;
   border-radius: 9px;
+  background-color: @surface;
+  text-color: @text;
+}
+
+element normal.normal,
+element alternate.normal,
+element normal.active,
+element alternate.active {
+  background-color: @surface;
   text-color: @text;
 }
 
 element selected.normal {
-  background-color: @surface-hover;
-  text-color: @accent;
+  background-color: @accent;
+  text-color: @background;
 }

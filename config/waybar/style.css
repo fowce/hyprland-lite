@@ -1,7 +1,7 @@
 @import "../theme/colors.css";
 
 * {
-  font-family: "Fira Sans Semibold", "JetBrainsMono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Fira Sans Semibold", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "JetBrainsMono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   border: none;
   border-radius: 0;
@@ -47,12 +47,23 @@ window#waybar {
 #clock {
   background: alpha(@surface, 0.72);
   margin: 4px 4px 4px 0;
-  padding: 2px 10px 0 10px;
+  padding: 0 10px;
+  min-height: 26px;
+  min-width: 24px;
 }
 
 #custom-appmenu,
 #custom-sidebar {
   margin-right: 10px;
+}
+
+#custom-appmenu {
+  background-image: url("./assets/appmenu.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 17px 17px;
+  min-width: 30px;
+  color: transparent;
 }
 
 #window {
@@ -92,7 +103,9 @@ window#waybar.empty #window {
 #custom-power,
 #tray {
   margin: 4px 4px 4px 0;
-  padding: 2px 8px 0 8px;
+  padding: 0 8px;
+  min-height: 26px;
+  min-width: 24px;
   background: transparent;
   color: @accent;
 }

@@ -1,6 +1,6 @@
 {
   "custom/appmenu": {
-    "format": "",
+    "format": " ",
     "on-click": "~/.config/hypr/scripts/launcher.sh",
     "on-click-right": "~/.config/hypr/scripts/workspace-switcher.sh",
     "tooltip-format": "Left: applications\nRight: workspaces"

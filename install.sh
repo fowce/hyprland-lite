@@ -284,6 +284,23 @@ check_dependencies() {
   fi
 }
 
+assert_required_commands_available() {
+  local missing=()
+  local cmd
+
+  for cmd in "${COMMAND_REQUIRED[@]}"; do
+    if ! command -v "${cmd}" >/dev/null 2>&1; then
+      missing+=("${cmd}")
+    fi
+  done
+
+  if [[ "${#missing[@]}" -gt 0 ]]; then
+    say "ERROR: Required commands are still missing: ${missing[*]}"
+    say "Install them first, or run: ./install.sh --install --install-packages"
+    die "Refusing real install with missing required commands."
+  fi
+}
+
 find_aur_helper() {
   local helper
 
@@ -737,6 +754,9 @@ main() {
     install)
       plan_changes "${root}"
       check_dependencies
+      if [[ "${DRY_RUN}" == false ]]; then
+        assert_required_commands_available
+      fi
       validate_sources_for_install "${root}"
       if [[ "${DRY_RUN}" == false ]]; then
         if ! confirm "Proceed with backup and copy-based install?"; then

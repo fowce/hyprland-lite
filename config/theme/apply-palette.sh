@@ -144,44 +144,44 @@ cat > "${theme_dir}/colors.rasi" <<EOF
 EOF
 
 cat > "${theme_dir}/colors-kitty.conf" <<EOF
-foreground ${text}
-background ${background}
-selection_foreground ${background}
-selection_background ${accent}
+foreground #ada594
+background #292724
+selection_foreground #ada594
+selection_background #3d3a34
 
 cursor ${accent}
-cursor_text_color ${background}
-url_color ${accent_hover}
+cursor_text_color #292724
+url_color ${accent}
 
 active_border_color ${accent}
-inactive_border_color ${border}
-bell_border_color ${error}
+inactive_border_color #292724
+bell_border_color ${accent}
 visual_bell_color none
 
-wayland_titlebar_color ${background}
-tab_bar_background ${background}
-active_tab_foreground ${background}
-active_tab_background ${accent}
-inactive_tab_foreground ${text_secondary}
-inactive_tab_background ${surface}
+wayland_titlebar_color #3d3a34
+tab_bar_background #3d3a34
+active_tab_foreground #fbfaf9
+active_tab_background #292724
+inactive_tab_foreground #b9b1ac
+inactive_tab_background #3d3a34
 
-color0 ${background}
-color1 ${error}
-color2 ${success}
-color3 ${accent}
-color4 ${info}
-color5 ${accent_hover}
-color6 ${text_secondary}
-color7 ${text}
+color0 #292724
+color1 #816f4b
+color2 #ec9255
+color3 #ffb380
+color4 ${accent}
+color5 #ec9255
+color6 #ac8e53
+color7 #ada594
 
-color8 ${text_disabled}
-color9 ${error}
-color10 ${success}
-color11 ${warning}
-color12 ${info}
-color13 ${accent_hover}
-color14 ${text_secondary}
-color15 #fff4ed
+color8 #7e7767
+color9 #f29d63
+color10 #3d3a34
+color11 #615c51
+color12 ${accent_hover}
+color13 #ddcba6
+color14 #e58748
+color15 #f2ead9
 EOF
 
 cat > "${hypr_theme_dir}/colors.lua" <<EOF
