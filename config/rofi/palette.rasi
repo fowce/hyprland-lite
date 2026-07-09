@@ -13,8 +13,7 @@ window {
   width: 26em;
   location: center;
   anchor: center;
-  border: 1px;
-  border-color: @border;
+  border: 0;
   border-radius: 12px;
   background-color: @background;
 }
@@ -53,7 +52,7 @@ element {
   padding: 9px 10px;
   border-radius: 9px;
   background-color: @surface;
-  text-color: @text;
+  text-color: #fff4ed;
 }
 
 element normal.normal,
@@ -61,7 +60,7 @@ element alternate.normal,
 element normal.active,
 element alternate.active {
   background-color: @surface;
-  text-color: @text;
+  text-color: #fff4ed;
 }
 
 element selected.normal {
