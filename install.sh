@@ -472,7 +472,11 @@ backup_one_path() {
         append_manifest "${backup_dir}" "SYMLINK_TARGET_COPY|${target}|symlink-targets/${label}|${resolved}"
       fi
     fi
-    say "Backed up symlink: ${target}"
+    if [[ "${DRY_RUN}" == true ]]; then
+      say "Would back up symlink: ${target}"
+    else
+      say "Backed up symlink: ${target}"
+    fi
   elif [[ -e "${target}" ]]; then
     parent="$(dirname -- "${backup_path}")"
     run_cmd mkdir -p "${parent}"
@@ -480,7 +484,11 @@ backup_one_path() {
       cp -a -- "${target}" "${backup_path}"
       append_manifest "${backup_dir}" "PATH|${target}|${label}"
     fi
-    say "Backed up path: ${target}"
+    if [[ "${DRY_RUN}" == true ]]; then
+      say "Would back up path: ${target}"
+    else
+      say "Backed up path: ${target}"
+    fi
   else
     if [[ "${DRY_RUN}" == false ]]; then
       append_manifest "${backup_dir}" "MISSING|${target}|${label}"
@@ -538,7 +546,11 @@ archive_existing_for_replace() {
   if [[ -e "${target}" || -L "${target}" ]]; then
     run_cmd mkdir -p "$(dirname -- "${archive_path}")"
     run_cmd mv -- "${target}" "${archive_path}"
-    say "Moved existing target aside: ${target} -> ${archive_path}"
+    if [[ "${DRY_RUN}" == true ]]; then
+      say "Would move existing target aside: ${target} -> ${archive_path}"
+    else
+      say "Moved existing target aside: ${target} -> ${archive_path}"
+    fi
   fi
 }
 

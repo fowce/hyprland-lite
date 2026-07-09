@@ -19,6 +19,12 @@ Check the config manually:
 waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css
 ```
 
+Check the desktop autostart log:
+
+```bash
+cat ~/.local/state/hyprland-lite/autostart.log
+```
+
 Also check whether another Waybar process is running:
 
 ```bash
