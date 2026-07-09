@@ -18,6 +18,7 @@ hl.config({
             size = 3,
             passes = 1,
             vibrancy = 0.1696,
+            ignore_opacity = true,
         },
     },
 })

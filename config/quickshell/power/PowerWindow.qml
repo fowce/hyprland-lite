@@ -14,13 +14,13 @@ PanelWindow {
     property int buttonCount: 5
 
     ColorPalette {
-        id: palette
+        id: colors
     }
 
     WlrLayershell.layer: WlrLayer.Overlay
     exclusionMode: WlrLayershell.Ignore
 
-    implicitWidth: 96
+    implicitWidth: 108
     implicitHeight: panel.implicitHeight + 32
     color: "transparent"
     visible: isOpen || slideAnimation.running
@@ -116,11 +116,11 @@ PanelWindow {
 
         Rectangle {
             anchors.fill: parent
-            color: palette.background
-            border.color: palette.border
+            color: colors.background
+            border.color: colors.border
             border.width: 1
-            radius: 38
-            opacity: 0.94
+            radius: 42
+            opacity: 0.96
         }
 
         ColumnLayout {
@@ -139,20 +139,25 @@ PanelWindow {
 
                 signal activated()
 
-                implicitWidth: 48
-                implicitHeight: 48
-                radius: 24
+                implicitWidth: 52
+                implicitHeight: 52
+                radius: 26
 
-                color: mouse.containsMouse || selected ? (danger ? palette.error : palette.accent) : "transparent"
-                border.color: danger ? palette.error : palette.accent
+                color: mouse.containsMouse || selected ? (danger ? colors.error : colors.accent) : colors.surface
+                border.color: danger ? colors.error : colors.accent
                 border.width: 1
+                scale: mouse.pressed ? 0.9 : (mouse.containsMouse ? 0.94 : 1)
+
+                Behavior on scale {
+                    NumberAnimation { duration: 90 }
+                }
 
                 Text {
                     anchors.centerIn: parent
                     text: button.glyph
-                    color: mouse.containsMouse || button.selected ? palette.background : (button.danger ? palette.error : palette.accent)
+                    color: mouse.containsMouse || button.selected ? colors.background : (button.danger ? colors.error : colors.accent)
                     font.family: "JetBrainsMono Nerd Font"
-                    font.pixelSize: 18
+                    font.pixelSize: 20
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }

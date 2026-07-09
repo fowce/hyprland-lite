@@ -1,8 +1,8 @@
 * {
-  background: #1b1719ee;
+  background: #1b1719d8;
   sidebar: #242022;
-  surface: #2d292b;
-  surface-hover: #383335;
+  surface: #2d292be8;
+  surface-hover: #383335f2;
   border: #433d40;
   accent: #ffae72;
   accent-hover: #ffc28e;

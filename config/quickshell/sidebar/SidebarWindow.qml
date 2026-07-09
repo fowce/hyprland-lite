@@ -12,36 +12,39 @@ PanelWindow {
 
     property bool isOpen: false
     property bool showWindow: false
+    property bool waybarEnabled: true
+    property bool nightEnabled: false
+    property bool vibranceEnabled: false
 
     ColorPalette {
-        id: palette
+        id: colors
     }
 
     WlrLayershell.layer: WlrLayer.Overlay
     exclusionMode: WlrLayershell.Ignore
 
-    implicitWidth: 336
+    implicitWidth: 392
     color: "transparent"
     visible: showWindow
 
     anchors {
-        left: true
+        right: true
         top: true
         bottom: true
     }
 
-    property real currentLeftMargin: isOpen ? 12 : -380
+    property real currentRightMargin: isOpen ? 12 : -430
 
     margins {
-        left: currentLeftMargin
+        right: currentRightMargin
         top: 52
         bottom: 12
     }
 
-    Behavior on currentLeftMargin {
+    Behavior on currentRightMargin {
         NumberAnimation {
             id: slideAnimation
-            duration: 220
+            duration: 230
             easing.type: Easing.OutCubic
             onRunningChanged: {
                 if (!running && !root.isOpen) {
@@ -99,16 +102,16 @@ PanelWindow {
 
         Rectangle {
             anchors.fill: parent
-            color: palette.background
-            border.color: palette.border
+            color: colors.background
+            border.color: colors.border
             border.width: 1
-            radius: 14
-            opacity: 0.94
+            radius: 16
+            opacity: 0.96
         }
 
         ScrollView {
             anchors.fill: parent
-            anchors.margins: 16
+            anchors.margins: 18
             clip: true
 
             ColumnLayout {
@@ -117,90 +120,137 @@ PanelWindow {
 
                 Text {
                     text: "Desktop"
-                    color: palette.text
+                    color: colors.text
                     font.family: "Fira Sans Semibold"
-                    font.pixelSize: 18
-                }
-
-                Text {
-                    text: "Controls"
-                    color: palette.accent
-                    font.family: "Fira Sans Semibold"
-                    font.pixelSize: 12
-                }
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
-
-                    ActionButton {
-                        label: "Picker"
-                        glyph: ""
-                        onActivated: root.run("hyprpicker -a", true)
-                    }
-
-                    ActionButton {
-                        label: "Waybar"
-                        glyph: "󰖲"
-                        onActivated: root.run("~/.config/hypr/scripts/waybar-toggle.sh", false)
-                    }
-                }
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
-
-                    ActionButton {
-                        label: "Wallpaper"
-                        glyph: ""
-                        onActivated: root.run("~/.config/hypr/scripts/wallpaper-picker.sh", true)
-                    }
-
-                    ActionButton {
-                        label: "Palette"
-                        glyph: ""
-                        onActivated: root.run("~/.config/hypr/scripts/palette-picker.sh", true)
-                    }
+                    font.pixelSize: 20
                 }
 
                 SectionLabel {
-                    text: "Audio"
+                    text: "Controls"
                 }
 
-                RowLayout {
+                ActionRow {
+                    title: "Color picker"
+                    subtitle: "Copy pixel color"
+                    glyph: ""
+                    onActivated: root.run("hyprpicker -a", true)
+                }
+
+                ToggleRow {
+                    title: "Waybar"
+                    subtitle: "Show or hide top panel"
+                    glyph: "󰖲"
+                    checked: root.waybarEnabled
+                    onActivated: {
+                        root.waybarEnabled = !root.waybarEnabled
+                        root.run("~/.config/hypr/scripts/waybar-toggle.sh", false)
+                    }
+                }
+
+                ActionRow {
+                    title: "Wallpaper"
+                    subtitle: "Choose desktop image"
+                    glyph: ""
+                    onActivated: root.run("~/.config/hypr/scripts/wallpaper-picker.sh", true)
+                }
+
+                ActionRow {
+                    title: "Palette"
+                    subtitle: "Switch color palette"
+                    glyph: ""
+                    onActivated: root.run("~/.config/hypr/scripts/palette-picker.sh", true)
+                }
+
+                SectionLabel {
+                    text: "Player"
+                }
+
+                Rectangle {
                     Layout.fillWidth: true
-                    spacing: 8
+                    implicitHeight: 116
+                    radius: 14
+                    color: colors.surface
+                    border.color: colors.border
+                    border.width: 1
 
-                    ActionButton {
-                        label: "Prev"
-                        glyph: "󰒮"
-                        onActivated: root.run("playerctl previous", false)
-                    }
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 14
+                        spacing: 12
 
-                    ActionButton {
-                        label: "Play"
-                        glyph: ""
-                        onActivated: root.run("playerctl play-pause", false)
-                    }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 12
 
-                    ActionButton {
-                        label: "Next"
-                        glyph: "󰒭"
-                        onActivated: root.run("playerctl next", false)
+                            Rectangle {
+                                Layout.preferredWidth: 42
+                                Layout.preferredHeight: 42
+                                radius: 12
+                                color: colors.hover
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: ""
+                                    color: colors.accent
+                                    font.family: "JetBrainsMono Nerd Font"
+                                    font.pixelSize: 19
+                                }
+                            }
+
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                spacing: 2
+
+                                Text {
+                                    text: "Media"
+                                    color: colors.text
+                                    font.family: "Fira Sans Semibold"
+                                    font.pixelSize: 14
+                                }
+
+                                Text {
+                                    text: "playerctl controls"
+                                    color: colors.textSecondary
+                                    font.family: "Fira Sans"
+                                    font.pixelSize: 12
+                                }
+                            }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+
+                            MediaButton {
+                                glyph: "󰒮"
+                                onActivated: root.run("playerctl previous", false)
+                            }
+
+                            MediaButton {
+                                glyph: ""
+                                primary: true
+                                onActivated: root.run("playerctl play-pause", false)
+                            }
+
+                            MediaButton {
+                                glyph: "󰒭"
+                                onActivated: root.run("playerctl next", false)
+                            }
+                        }
                     }
                 }
 
                 ControlRow {
                     title: "Volume"
-                    value: 50
+                    value: 55
                     onChanged: function(amount) {
                         root.run("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ " + amount + "%", false)
                     }
                 }
 
-                ActionButton {
-                    Layout.fillWidth: true
-                    label: "Volume Mixer"
+                ActionRow {
+                    title: "Volume mixer"
+                    subtitle: "Open pavucontrol"
                     glyph: ""
                     onActivated: root.run("pavucontrol", true)
                 }
@@ -217,20 +267,25 @@ PanelWindow {
                     }
                 }
 
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
-
-                    ActionButton {
-                        label: "Night"
-                        glyph: "󰖔"
-                        onActivated: root.run("~/.config/hypr/scripts/hyprsunset-toggle.sh", false)
+                ToggleRow {
+                    title: "Night light"
+                    subtitle: "hyprsunset"
+                    glyph: "󰖔"
+                    checked: root.nightEnabled
+                    onActivated: {
+                        root.nightEnabled = !root.nightEnabled
+                        root.run("~/.config/hypr/scripts/hyprsunset-toggle.sh", false)
                     }
+                }
 
-                    ActionButton {
-                        label: "Vibrance"
-                        glyph: "󰸌"
-                        onActivated: root.run("~/.config/hypr/scripts/hyprshade-toggle.sh", false)
+                ToggleRow {
+                    title: "Vibrance"
+                    subtitle: "hyprshade"
+                    glyph: "󰸌"
+                    checked: root.vibranceEnabled
+                    onActivated: {
+                        root.vibranceEnabled = !root.vibranceEnabled
+                        root.run("~/.config/hypr/scripts/hyprshade-toggle.sh", false)
                     }
                 }
 
@@ -238,101 +293,114 @@ PanelWindow {
                     text: "Capture"
                 }
 
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
+                ActionRow {
+                    title: "Screenshot area"
+                    subtitle: "Select region"
+                    glyph: "󰹑"
+                    onActivated: root.run("~/.config/hypr/scripts/screenshot.sh --area", true)
+                }
 
-                    ActionButton {
-                        label: "Area"
-                        glyph: "󰹑"
-                        onActivated: root.run("~/.config/hypr/scripts/screenshot.sh --area", true)
-                    }
+                ActionRow {
+                    title: "Screenshot screen"
+                    subtitle: "Full output"
+                    glyph: "󰍹"
+                    onActivated: root.run("~/.config/hypr/scripts/screenshot.sh --screen", true)
+                }
 
-                    ActionButton {
-                        label: "Screen"
-                        glyph: "󰍹"
-                        onActivated: root.run("~/.config/hypr/scripts/screenshot.sh --screen", true)
-                    }
-
-                    ActionButton {
-                        label: "OCR"
-                        glyph: "󰊄"
-                        onActivated: root.run("~/.config/hypr/scripts/ocr.sh", true)
-                    }
+                ActionRow {
+                    title: "OCR"
+                    subtitle: "Read selected text"
+                    glyph: "󰊄"
+                    onActivated: root.run("~/.config/hypr/scripts/ocr.sh", true)
                 }
 
                 SectionLabel {
                     text: "System"
                 }
 
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
+                ActionRow {
+                    title: "Network"
+                    subtitle: "Open nmtui"
+                    glyph: "󰤨"
+                    onActivated: root.run("kitty -e nmtui", true)
+                }
 
-                    ActionButton {
-                        label: "Network"
-                        glyph: "󰤨"
-                        onActivated: root.run("kitty -e nmtui", true)
-                    }
+                ActionRow {
+                    title: "GTK settings"
+                    subtitle: "Open nwg-look"
+                    glyph: "󰒓"
+                    onActivated: root.run("nwg-look", true)
+                }
 
-                    ActionButton {
-                        label: "GTK"
-                        glyph: "󰒓"
-                        onActivated: root.run("nwg-look", true)
-                    }
-
-                    ActionButton {
-                        label: "Qt"
-                        glyph: "󰖳"
-                        onActivated: root.run("qt6ct", true)
-                    }
+                ActionRow {
+                    title: "Qt settings"
+                    subtitle: "Open qt6ct"
+                    glyph: "󰖳"
+                    onActivated: root.run("qt6ct", true)
                 }
             }
         }
     }
 
     component SectionLabel: Text {
-        color: palette.accent
+        color: colors.accent
         font.family: "Fira Sans Semibold"
         font.pixelSize: 12
     }
 
-    component ActionButton: Rectangle {
-        id: button
+    component ActionRow: Rectangle {
+        id: row
 
-        property string label: ""
+        property string title: ""
+        property string subtitle: ""
         property string glyph: ""
         signal activated()
 
         Layout.fillWidth: true
-        implicitHeight: 42
-        radius: 10
-        color: mouse.containsMouse ? palette.hover : palette.surface
-        border.color: palette.border
+        implicitHeight: 58
+        radius: 13
+        color: mouse.containsMouse ? colors.hover : colors.surface
+        border.color: colors.border
         border.width: 1
+        scale: mouse.pressed ? 0.985 : 1
+
+        Behavior on scale {
+            NumberAnimation { duration: 90 }
+        }
 
         RowLayout {
             anchors.fill: parent
-            anchors.leftMargin: 12
-            anchors.rightMargin: 12
-            spacing: 8
+            anchors.leftMargin: 13
+            anchors.rightMargin: 13
+            spacing: 12
 
             Text {
-                text: button.glyph
-                color: palette.accent
+                text: row.glyph
+                color: colors.accent
                 font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 15
-                Layout.preferredWidth: 22
+                font.pixelSize: 18
+                Layout.preferredWidth: 26
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            Text {
-                text: button.label
-                color: palette.text
-                font.family: "Fira Sans Semibold"
-                font.pixelSize: 13
-                elide: Text.ElideRight
+            ColumnLayout {
                 Layout.fillWidth: true
+                spacing: 2
+
+                Text {
+                    text: row.title
+                    color: colors.text
+                    font.family: "Fira Sans Semibold"
+                    font.pixelSize: 13
+                }
+
+                Text {
+                    text: row.subtitle
+                    color: colors.textSecondary
+                    font.family: "Fira Sans"
+                    font.pixelSize: 11
+                    visible: row.subtitle.length > 0
+                }
             }
         }
 
@@ -341,7 +409,75 @@ PanelWindow {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: button.activated()
+            onClicked: row.activated()
+        }
+    }
+
+    component ToggleRow: ActionRow {
+        id: toggleRow
+
+        property bool checked: false
+
+        Rectangle {
+            width: 42
+            height: 22
+            radius: 11
+            color: toggleRow.checked ? colors.accent : colors.hover
+            border.color: toggleRow.checked ? colors.accent : colors.border
+            anchors.right: parent.right
+            anchors.rightMargin: 13
+            anchors.verticalCenter: parent.verticalCenter
+
+            Rectangle {
+                width: 16
+                height: 16
+                radius: 8
+                color: toggleRow.checked ? colors.background : colors.textSecondary
+                anchors.verticalCenter: parent.verticalCenter
+                x: toggleRow.checked ? 22 : 4
+
+                Behavior on x {
+                    NumberAnimation { duration: 140; easing.type: Easing.OutCubic }
+                }
+            }
+        }
+    }
+
+    component MediaButton: Rectangle {
+        id: mediaButton
+
+        property string glyph: ""
+        property bool primary: false
+        signal activated()
+
+        Layout.fillWidth: true
+        implicitHeight: 38
+        radius: 12
+        color: primary ? colors.accent : colors.hover
+        border.color: primary ? colors.accent : colors.border
+        border.width: 1
+        scale: mouse.containsMouse ? 0.96 : 1
+
+        Behavior on scale {
+            NumberAnimation { duration: 90 }
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: mediaButton.glyph
+            color: mediaButton.primary ? colors.background : colors.accent
+            font.family: "JetBrainsMono Nerd Font"
+            font.pixelSize: 17
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        MouseArea {
+            id: mouse
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: mediaButton.activated()
         }
     }
 
@@ -353,14 +489,14 @@ PanelWindow {
         signal changed(int amount)
 
         Layout.fillWidth: true
-        spacing: 6
+        spacing: 8
 
         RowLayout {
             Layout.fillWidth: true
 
             Text {
                 text: control.title
-                color: palette.text
+                color: colors.text
                 font.family: "Fira Sans Semibold"
                 font.pixelSize: 13
                 Layout.fillWidth: true
@@ -368,7 +504,7 @@ PanelWindow {
 
             Text {
                 text: Math.round(slider.value) + "%"
-                color: palette.textSecondary
+                color: colors.textSecondary
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 12
             }
@@ -382,6 +518,33 @@ PanelWindow {
             value: control.value
             stepSize: 5
             onMoved: control.changed(Math.round(value))
+
+            background: Rectangle {
+                x: slider.leftPadding
+                y: slider.topPadding + slider.availableHeight / 2 - height / 2
+                width: slider.availableWidth
+                height: 8
+                radius: 4
+                color: colors.hover
+
+                Rectangle {
+                    width: slider.visualPosition * parent.width
+                    height: parent.height
+                    radius: 4
+                    color: colors.accent
+                }
+            }
+
+            handle: Rectangle {
+                x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width)
+                y: slider.topPadding + slider.availableHeight / 2 - height / 2
+                width: 18
+                height: 18
+                radius: 9
+                color: colors.text
+                border.color: colors.accent
+                border.width: 2
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "custom/appmenu": {
-    "format": "Apps",
+    "format": "",
     "on-click": "~/.config/hypr/scripts/launcher.sh",
     "on-click-right": "~/.config/hypr/scripts/workspace-switcher.sh",
     "tooltip-format": "Left: applications\nRight: workspaces"
@@ -29,17 +29,17 @@
     "all-outputs": true,
     "format": "{id}",
     "persistent-workspaces": {
-      "*": 10
+      "*": 5
     }
   },
 
   "pulseaudio": {
     "format": "{icon}",
-    "format-muted": "muted",
-    "format-source": "{volume}% mic",
-    "format-source-muted": "mic muted",
+    "format-muted": "󰝟",
+    "format-source": "",
+    "format-source-muted": "",
     "format-icons": {
-      "default": ["vol", "vol", "vol"]
+      "default": ["", "", ""]
     },
     "tooltip-format": "{volume}%",
     "on-click": "pavucontrol",
@@ -52,18 +52,18 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "chg {capacity}%",
-    "format-plugged": "plug {capacity}%",
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-plugged": "󰚥",
     "format-alt": "{time}",
-    "format-icons": ["bat", "bat", "bat", "bat", "bat"]
+    "format-icons": ["󰂎", "󰁺", "󰁾", "󰂁", "󰁹"]
   },
 
   "network": {
-    "format": "{ifname}",
-    "format-wifi": "wifi",
-    "format-ethernet": "eth",
-    "format-disconnected": "offline",
+    "format": "󰈀",
+    "format-wifi": "",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
     "tooltip-format-wifi": "{essid} {signalStrength}%",
     "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
@@ -71,12 +71,12 @@
   },
 
   "hyprland/language": {
-    "format": "lang {short}",
+    "format": "{short}",
     "tooltip": false
   },
 
   "custom/cliphist": {
-    "format": "clip",
+    "format": "",
     "on-click": "~/.config/hypr/scripts/clipboard.sh",
     "on-click-right": "~/.config/hypr/scripts/clipboard.sh --delete",
     "on-click-middle": "~/.config/hypr/scripts/clipboard.sh --wipe",
@@ -88,7 +88,7 @@
   },
 
   "custom/power": {
-    "format": "power",
+    "format": "",
     "on-click": "qs ipc call power toggle",
     "on-click-right": "~/.config/hypr/scripts/power.sh",
     "tooltip-format": "Left: power panel\nRight: fallback menu"

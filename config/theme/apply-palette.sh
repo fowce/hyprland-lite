@@ -125,10 +125,10 @@ EOF
 
 cat > "${theme_dir}/colors.rasi" <<EOF
 * {
-  background: ${background}ee;
+  background: ${background}d8;
   sidebar: ${sidebar};
-  surface: ${surface};
-  surface-hover: ${hover};
+  surface: ${surface}e8;
+  surface-hover: ${hover}f2;
   border: ${border};
   accent: ${accent};
   accent-hover: ${accent_hover};

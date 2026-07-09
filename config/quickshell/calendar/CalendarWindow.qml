@@ -25,14 +25,14 @@ PanelWindow {
     property var dayNames: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
 
     ColorPalette {
-        id: palette
+        id: colors
     }
 
     WlrLayershell.layer: WlrLayer.Overlay
     exclusionMode: WlrLayershell.Ignore
 
-    implicitWidth: 372
-    implicitHeight: 368
+    implicitWidth: 390
+    implicitHeight: 388
     color: "transparent"
     visible: showWindow
 
@@ -184,11 +184,11 @@ PanelWindow {
 
         Rectangle {
             anchors.fill: parent
-            color: palette.background
-            border.color: palette.border
+            color: colors.background
+            border.color: colors.border
             border.width: 1
-            radius: 12
-            opacity: 0.94
+            radius: 16
+            opacity: 0.96
         }
 
         ColumnLayout {
@@ -206,14 +206,14 @@ PanelWindow {
 
                     Text {
                         text: monthNames[currentMonth] + " " + currentYear
-                        color: palette.text
+                        color: colors.text
                         font.family: "Fira Sans Semibold"
                         font.pixelSize: 18
                     }
 
                     Text {
                         text: Qt.formatDate(new Date(), "dddd, d MMMM")
-                        color: palette.textSecondary
+                        color: colors.textSecondary
                         font.family: "Fira Sans"
                         font.pixelSize: 12
                     }
@@ -225,19 +225,24 @@ PanelWindow {
                     property string label: ""
                     signal activated()
 
-                    implicitWidth: 32
-                    implicitHeight: 32
-                    radius: 9
-                    color: mouse.containsMouse ? palette.hover : palette.surface
-                    border.color: palette.border
+                    implicitWidth: 34
+                    implicitHeight: 34
+                    radius: 11
+                    color: mouse.containsMouse ? colors.hover : colors.surface
+                    border.color: colors.border
                     border.width: 1
+                    scale: mouse.pressed ? 0.94 : 1
+
+                    Behavior on scale {
+                        NumberAnimation { duration: 90 }
+                    }
 
                     Text {
                         anchors.centerIn: parent
                         text: button.label
-                        color: palette.accent
+                        color: colors.accent
                         font.family: "JetBrainsMono Nerd Font"
-                        font.pixelSize: 14
+                        font.pixelSize: 15
                     }
 
                     MouseArea {
@@ -268,8 +273,8 @@ PanelWindow {
             GridLayout {
                 Layout.fillWidth: true
                 columns: 7
-                columnSpacing: 6
-                rowSpacing: 6
+                    columnSpacing: 7
+                    rowSpacing: 7
 
                 Repeater {
                     model: dayNames
@@ -280,7 +285,7 @@ PanelWindow {
                         Layout.preferredWidth: 40
                         Layout.preferredHeight: 24
                         text: modelData
-                        color: modelData === "Sa" || modelData === "Su" ? palette.accent : palette.textSecondary
+                        color: modelData === "Sa" || modelData === "Su" ? colors.accent : colors.textSecondary
                         font.family: "Fira Sans Semibold"
                         font.pixelSize: 12
                         horizontalAlignment: Text.AlignHCenter
@@ -304,17 +309,17 @@ PanelWindow {
                         required property bool current
                         required property bool today
 
-                        Layout.preferredWidth: 40
-                        Layout.preferredHeight: 32
-                        radius: 10
-                        color: today ? palette.accent : "transparent"
-                        border.color: !today && current ? palette.border : "transparent"
-                        border.width: !today && current ? 1 : 0
+                        Layout.preferredWidth: 42
+                        Layout.preferredHeight: 34
+                        radius: 11
+                        color: today ? colors.accent : (current ? colors.surface : "transparent")
+                        border.color: today ? colors.accent : (current ? colors.border : "transparent")
+                        border.width: current || today ? 1 : 0
 
                         Text {
                             anchors.centerIn: parent
                             text: day
-                            color: today ? palette.background : (current ? palette.text : palette.textDisabled)
+                            color: today ? colors.background : (current ? colors.text : colors.textDisabled)
                             font.family: today ? "Fira Sans Semibold" : "Fira Sans"
                             font.pixelSize: 13
                         }

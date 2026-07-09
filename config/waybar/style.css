@@ -80,7 +80,7 @@ window#waybar.empty #window {
 #workspaces button.active {
   background: @accent;
   color: @background;
-  min-width: 28px;
+  min-width: 40px;
 }
 
 #workspaces button:hover {

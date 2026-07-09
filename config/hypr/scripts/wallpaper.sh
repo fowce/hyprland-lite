@@ -35,6 +35,8 @@ case "${1:-}" in
   --restore)
     if [[ -f "$state_file" ]]; then
       set_wallpaper "$(cat "$state_file")"
+    elif [[ -f "${wallpaper_dir}/default.jpg" ]]; then
+      set_wallpaper "${wallpaper_dir}/default.jpg"
     fi
     ;;
   --random)

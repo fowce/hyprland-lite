@@ -25,6 +25,13 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "float-rofi",
+    match = { class = "rofi" },
+    float = true,
+    center = true,
+})
+
+hl.window_rule({
     name = "float-pavucontrol",
     match = { class = "pavucontrol" },
     float = true,
